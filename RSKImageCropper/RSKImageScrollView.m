@@ -189,11 +189,26 @@
     CGFloat yScale = boundsSize.height / _imageSize.height;   // the scale needed to perfectly fit the image height-wise
     
     CGFloat minScale;
-    if (!self.aspectFill) {
-        minScale = MIN(xScale, yScale); // use minimum of these to allow the image to become fully visible
-    } else {
+//     if (!self.aspectFill) {
+//         minScale = MIN(xScale, yScale); // use minimum of these to allow the image to become fully visible
+//     } else {
+//         minScale = MAX(xScale, yScale); // use maximum of these to allow the image to fill the screen
+//     }
+    if (boundsSize.height/boundsSize.width > _imageSize.height/_imageSize.width) {
+        if (boundsSize.height > _imageSize.height) {
+            minScale = boundsSize.height/_imageSize.height;
+        } else {
+            minScale = _imageSize.height/boundsSize.height;
+        }
+     } else {
         minScale = MAX(xScale, yScale); // use maximum of these to allow the image to fill the screen
-    }
+        if (boundsSize.width > _imageSize.width) {
+            minScale = boundsSize.width/_imageSize.width;
+        } else {
+            minScale = _imageSize.width/boundsSize.width;
+        }
+     }
+
     
     CGFloat maxScale = MAX(xScale, yScale);
     
@@ -221,6 +236,19 @@
     CGFloat xScale = boundsSize.width  / _imageSize.width;    // the scale needed to perfectly fit the image width-wise
     CGFloat yScale = boundsSize.height / _imageSize.height;   // the scale needed to perfectly fit the image height-wise
     CGFloat scale = MAX(xScale, yScale);
+    if (boundsSize.height/boundsSize.width > _imageSize.height/_imageSize.width) {
+        if (boundsSize.height > _imageSize.height) {
+            scale = boundsSize.height/_imageSize.height;
+        } else {
+            scale = _imageSize.height/boundsSize.height;
+        }
+    } else {
+        if (boundsSize.width > _imageSize.width) {
+            scale = boundsSize.width/_imageSize.width;
+        } else {
+            scale = _imageSize.width/boundsSize.width;
+        }
+    }
     self.zoomScale = scale;
 }
 
