@@ -194,19 +194,11 @@
 //     } else {
 //         minScale = MAX(xScale, yScale); // use maximum of these to allow the image to fill the screen
 //     }
+//     minScale = MAX(xScale, yScale); // use maximum of these to allow the image to fill the screen
     if (boundsSize.height/boundsSize.width > _imageSize.height/_imageSize.width) {
-        if (boundsSize.height > _imageSize.height) {
-            minScale = boundsSize.height/_imageSize.height;
-        } else {
-            minScale = _imageSize.height/boundsSize.height;
-        }
+        minScale = boundsSize.height/_imageSize.height;
      } else {
-        minScale = MAX(xScale, yScale); // use maximum of these to allow the image to fill the screen
-        if (boundsSize.width > _imageSize.width) {
-            minScale = boundsSize.width/_imageSize.width;
-        } else {
-            minScale = _imageSize.width/boundsSize.width;
-        }
+        minScale = boundsSize.width/_imageSize.width;
      }
 
     
@@ -237,17 +229,9 @@
     CGFloat yScale = boundsSize.height / _imageSize.height;   // the scale needed to perfectly fit the image height-wise
     CGFloat scale = MAX(xScale, yScale);
     if (boundsSize.height/boundsSize.width > _imageSize.height/_imageSize.width) {
-        if (boundsSize.height > _imageSize.height) {
-            scale = boundsSize.height/_imageSize.height;
-        } else {
-            scale = _imageSize.height/boundsSize.height;
-        }
+        scale = boundsSize.height/_imageSize.height;
     } else {
-        if (boundsSize.width > _imageSize.width) {
-            scale = boundsSize.width/_imageSize.width;
-        } else {
-            scale = _imageSize.width/boundsSize.width;
-        }
+        scale = boundsSize.width/_imageSize.width;
     }
     self.zoomScale = scale;
 }
